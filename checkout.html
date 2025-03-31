@@ -6,7 +6,7 @@
     <title>Checkout Process</title>
     <link rel="stylesheet" href="checkout.css">
     <script src="https://www.paypal.com/sdk/js?client-id=AUgF7ehbiNQYLvzrRkjy2Adc6o-slGzqVHuDdOJQu4PK_9BzVnS-G9WqM2O8dCG1hz03YEB-Dt-H3n4t"></script>
-    <script src="checkout.js" defer></script> <!-- Link to the external JavaScript file -->
+    <script src="checkout.js" defer></script> 
 </head>
 <body>
     <div class="checkout-container">
@@ -41,7 +41,7 @@
         <div id="paypal-button-container" style="display: none;"></div>
     </div>
 
-    <div id="confirmation-modal" class="modal">
+    <div id="confirmation-modal" class="modal" style="display: none;">
         <div class="modal-content">
             <span class="close" id="close-modal">&times;</span>
             <h2>Thank You!</h2>
@@ -50,5 +50,36 @@
             <button id="close-modal-button">Close</button>
         </div>
     </div>
+
+    <script>
+        const form = document.getElementById('checkout-form');
+        const modal = document.getElementById('confirmation-modal');
+        const closeModalButton = document.getElementById('close-modal-button');
+        const closeModalSpan = document.getElementById('close-modal');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const paymentMethod = form.payment.value;
+
+            if (paymentMethod === 'cod') {
+                // Show the confirmation modal
+                modal.style.display = 'block';
+            } else {
+                // Handle PayPal payment logic here
+            }
+        });
+
+        // Close modal and redirect to order tracking page
+        closeModalButton.addEventListener('click', () => {
+            modal.style.display = 'none';
+            window.location.href = 'order-tracking.html'; // Redirect to order tracking page
+        });
+
+        closeModalSpan.addEventListener('click', () => {
+            modal.style.display = 'none';
+            window.location.href = 'order-tracking.html'; // Redirect to order tracking page
+        });
+    </script>
 </body>
 </html>

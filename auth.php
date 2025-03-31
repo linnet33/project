@@ -40,11 +40,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     if (isset($_POST['signIn'])) {
-        // Login process
+        // this is the Login process
         $email = trim($_POST['email']);
         $password = trim($_POST['password']);
 
-        // Fetch user from the database
+        // this fetches user from the database
         if ($stmt = $conn->prepare("SELECT CutomerId, password FROM customer WHERE email = ?")) {
             $stmt->bind_param("s", $email);
             $stmt->execute();

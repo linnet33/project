@@ -1,0 +1,34 @@
+<!-- Order Tracking Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <link rel="stylesheet" href="order-tracking.css">
+</head>
+<body>
+    <div class="order-tracking-container">
+        <h1>Order Tracking</h1>
+        <form id="order-tracking-form">
+            <div class="form-group">
+                <label for="tracking-id">Tracking ID:</label>
+                <input type="text" id="tracking-id" name="tracking-id" required>
+            </div>
+            <button type="submit">Track Order</button>
+        </form>
+        <div id="order-tracking-details" style="display: none;">
+            <h2>Order Details:</h2>
+            <p>Tracking ID: <span id="tracking-id-detail"></span></p>
+            <p>Order Date: <span id="order-date-detail"></span></p>
+            <p>Order Status: <span id="order-status-detail"></span></p>
+            <p>Customer Name: <span id="customer-name-detail"></span></p>
+            <p>Customer Address: <span id="customer-address-detail"></span></p>
+            <p>Customer Phone: <span id="customer-phone-detail"></span></p>
+            <p>Payment Method: <span id="payment-method-detail"></span></p>
+        </div>
+    </div>
+
+    <script src="order-tracking.js"></script>
+</body>
+</html>
