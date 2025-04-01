@@ -10,7 +10,7 @@ if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 
     // Fetch user details
-    if ($stmt = $conn->prepare("SELECT first_name FROM customer WHERE CustomerId = ?")) {
+    if ($stmt = $conn->prepare("SELECT first_name FROM login WHERE CustomerId = ?")) {
         $stmt->bind_param("i", $userId);
         $stmt->execute();
         $stmt->bind_result($firstName);

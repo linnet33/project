@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT); // Secure password
 
         // Check if email already exists
-        if ($stmt = $conn->prepare("SELECT email FROM customer WHERE email = ?")) {
+        if ($stmt = $conn->prepare("SELECT email FROM login WHERE email = ?")) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->store_result();
@@ -24,7 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             } else {
                 // Insert user data into the database
-                if ($stmt = $conn->prepare("INSERT INTO customer (first_name, last_name, email, password) VALUES (?, ?, ?, ?)")) {
+                if ($stmt = $conn->prepare("INSERT INTO login (first_name, last_name, email, password) VALUES (?, ?, ?, ?)")) {
                     $stmt->bind_param("ssss", $firstName, $lastName, $email, $password);
 
                     if ($stmt->execute()) {
@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST['password']);
 
         // this fetches user from the database
-        if ($stmt = $conn->prepare("SELECT CustomerId, password FROM customer WHERE email = ?")) {
+        if ($stmt = $conn->prepare("SELECT customerid, password FROM login WHERE email = ?")) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->store_result();

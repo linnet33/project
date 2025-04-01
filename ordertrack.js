@@ -38,7 +38,7 @@ document.getElementById('trackingForm').addEventListener('submit', function(even
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ orderId: orderId })
+            body: JSON.stringify({ tracking_id: orderId }) // Use tracking_id instead of orderId
         })
         .then(response => response.json())
         .then(data => {

@@ -15,14 +15,14 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Get the order ID from the POST request
+// Get the tracking ID from the POST request
 $data = json_decode(file_get_contents("php://input"), true);
-$orderId = $data['orderId'];
-error_log("Received Order ID: " . $orderId); // Log the received Order ID
+$trackingId = $data['tracking_id']; // Change from orderId to tracking_id
+error_log("Received Tracking ID: " . $trackingId); // Log the received Tracking ID
 
 // Prepare and bind
-$stmt = $conn->prepare("UPDATE orders SET order_status = 'Canceled' WHERE id = ?");
-$stmt->bind_param("i", $orderId);
+$stmt = $conn->prepare("UPDATE orders SET order_status = 'Canceled' WHERE tracking_id = ?"); // Use tracking_id in the query
+$stmt->bind_param("s", $trackingId); // Assuming tracking_id is a string
 
 // Execute the statement
 if ($stmt->execute()) {
