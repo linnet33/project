@@ -1,4 +1,24 @@
+<?php
+session_start();
+require 'databaseconn.php'; 
 
+// Initialize variables
+$firstName = null;
+
+// Check if the user is logged in
+if (isset($_SESSION['user_id'])) {
+    $userId = $_SESSION['user_id'];
+
+    // Fetch user details
+    if ($stmt = $conn->prepare("SELECT first_name FROM customer WHERE CustomerId = ?")) {
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $stmt->bind_result($firstName);
+        $stmt->fetch();
+        $stmt->close();
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,28 +29,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- navbar  Section -->
+    <!-- navbar Section -->
     <section id="header">
-    <img src="images/logo.jpeg"class="logo">
+        <img src="images/logo.jpeg" class="logo">
         <div>
             <ul id="navbar">
                 <li><a class="active" href="#homecont">Home</a></li>
                 <li><a href="#about-section">About</a></li>
                 <li><a href="#shophere">Shop</a></li>
                 <li><a href="#contactus">Contact</a></li>
-                <li><a href="cart.html"><i class="fa-solid fa-bag-shopping cart-icon"></i></a></li>
-                <li><a href="logout.php"><button class="logout">log out</button></a></li>
+                <li><a href="cart.php"><i class="fa-solid fa-bag-shopping cart-icon"></i></a></li>
+                <li><a href="ordertrack.html">order tarcking</a></li>
+                <li><a href="logout.php"><button class="logout">Log Out</button></a></li>
             </ul>
         </div>
     </section>
     <!-- Content for the home page-->
     <div id="homecont">
         <div class="cont">
-        <h4>Welcome to La pet!</h4>
-        <h2>Great deals</h2>
-        <h1>On all products</h1>
-        <p>we have everything you need to keep your furry friend happy and healthy</p>
-        <a href="#shophere"><button>Shop Now</button></a>
+            <h4>Welcome to La Pet!</h4>
+            <?php if ($firstName): ?>
+                        <span>Welcome, <?php echo htmlspecialchars($firstName); ?>!</span>
+                    <?php else: ?>
+                        <span>Welcome, Guest!</span>
+                    <?php endif; ?>
+            <h2>Great deals</h2>
+            <h1>On all products</h1>
+            <p>We have everything you need to keep your furry friend happy and healthy</p>
+            <a href="#shophere"><button>Shop Now</button></a>
     </div>
     </div>
      <!-- Content for the features -->

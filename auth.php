@@ -31,7 +31,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         echo "<script>alert('Registration successful! You can now log in.'); window.location.href = 'index.html';</script>";
                         exit();
                     } else {
-                        echo "<script>alert('Error: Unable to register. Try again!');</script>";
+                        echo "<script>alert('Error: Unable to register. Try again!'); window.location.href = 'index.html';</script>";
+                        exit();
                     }
                 }
             }
@@ -45,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = trim($_POST['password']);
 
         // this fetches user from the database
-        if ($stmt = $conn->prepare("SELECT CutomerId, password FROM customer WHERE email = ?")) {
+        if ($stmt = $conn->prepare("SELECT CustomerId, password FROM customer WHERE email = ?")) {
             $stmt->bind_param("s", $email);
             $stmt->execute();
             $stmt->store_result();
@@ -55,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $stmt->fetch();
 
                 if (password_verify($password, $hashed_password)) {
-                    $_SESSION['user_id'] = $id;
+                    $_SESSION['user_id'] = $id; // Store user ID in session
                     echo "<script>alert('Login successful! Redirecting...'); window.location.href = 'home.php';</script>";
                     exit();
                 } else {
@@ -66,7 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 echo "<script>alert('Error: Email not found. Please register first.'); window.location.href = 'index.html';</script>";
                 exit();
             }
-            
+        } else {
+            echo "<script>alert('Error: Unable to prepare statement.'); window.location.href = 'index.html';</script>";
+            exit();
         }
     }
 }

@@ -1,3 +1,7 @@
+<<?php
+session_start();
+require 'databaseconn.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,15 +103,25 @@
         }
 
         function proceedToCheckout() {
-            const cart = getCart();
-            localStorage.setItem("checkoutCart", JSON.stringify(cart)); // Store cart for checkout
+    // Check if user is logged in
+    const userId = <?php echo json_encode($_SESSION['user_id'] ?? null); ?>; // Get user ID from PHP session
+    const isGuest = <?php echo json_encode($_SESSION['guest'] ?? false); ?>; // Check if user is a guest
 
-            // Calculate total price and store it for checkout
-            const totalPrice = cart.reduce((total, item) => total + (parseFloat(item.price.replace(/[^\d.]/g, "")) * item.quantity), 0);
-            localStorage.setItem("checkoutTotal", totalPrice.toFixed(2)); // Store total price for checkout
+    if (!userId || isGuest) {
+        alert("You need to sign in to proceed to checkout.");
+        window.location.href = "index.php"; // Redirect to sign-in page
+        return;
+    }
 
-            window.location.href = "checkout.html"; // Redirect to checkout page
-        }
-    </script>
+    const cart = getCart();
+    localStorage.setItem("checkoutCart", JSON.stringify(cart)); // Store cart for checkout
+
+    // Calculate total price and store it for checkout
+    const totalPrice = cart.reduce((total, item) => total + (parseFloat(item.price.replace(/[^\d.]/g, "")) * item.quantity), 0);
+    localStorage.setItem("checkoutTotal", totalPrice.toFixed(2)); // Store total price for checkout
+
+    window.location.href = "checkout.html"; // Redirect to checkout page
+}
+
 </body>
 </html>

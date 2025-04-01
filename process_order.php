@@ -18,7 +18,7 @@ if ($conn->connect_error) {
 // Get the order data from the POST request
 $data = json_decode(file_get_contents("php://input"), true); // Decode JSON input
 $name = $data['name'];
-$pickup_station = $data['pickup_station']; // Use underscore instead of hyphen
+$pickup_station = $data['pickup_station']; 
 $phone = $data['phone'];
 $payment_method = $data['payment'];
 $tracking_id = uniqid('ORD-'); // Generate a unique tracking ID

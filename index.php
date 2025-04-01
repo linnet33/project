@@ -1,3 +1,7 @@
+<<?php
+session_start();
+require 'databaseconn.php'; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +14,8 @@
 <body>
     <div class="container" id="signup" style="display:none;">
       <h1 class="form-title">Register</h1>
-      <!-- index.html -->
-<form method="post" action="auth.php">
-  <input type="hidden" name="csrf_token">
+      <form method="post" action="auth.php">
+        <input type="hidden" name="csrf_token">
         <div class="input-group">
            <i class="fas fa-user"></i>
            <input type="text" name="fName" id="fName" placeholder="First Name" required>
@@ -35,15 +38,9 @@
         </div>
        <input type="submit" class="btn" value="Sign Up" name="signUp">
       </form>
-      <p class="or">
-        ----------or--------
-      </p>
-      <div class="icons">
-        <i class="fab fa-google"></i>
-        <i class="fab fa-facebook"></i>
-      </div>
+      <p class="or">----------or--------</p>
       <div class="links">
-        <p>Already Have Account ?</p>
+        <p>Already Have Account?</p>
         <button id="signInButton">Sign In</button>
       </div>
     </div>
@@ -66,18 +63,32 @@
           </p>
          <input type="submit" class="btn" value="Sign In" name="signIn">
         </form>
-        <p class="or">
-          ----------or--------
-        </p>
-        <div class="icons">
-          <i class="fab fa-google"></i>
-          <i class="fab fa-facebook"></i>
-        </div>
+        <p class="or">----------or--------</p>
         <div class="links">
-          <p>Don't have account yet?</p>
+          <p>Don't have an account yet?</p>
           <button id="signUpButton">Sign Up</button>
         </div>
+        <div class="guest-option">
+          <h2>Join as a Guest</h2>
+          <button onclick="joinAsGuest()">Continue to Home</button>
       </div>
-      <script src="script.js"></script>
+    </div>
+    <script>
+      function joinAsGuest() {
+          // Set a session variable for guest users
+          fetch('guest_session.php') // This PHP file sets the session variable
+              .then(response => {
+                  if (response.ok) {
+                      window.location.href = 'home.php'; // Redirect to home page
+                  } else {
+                      alert("Failed to set guest session.");
+                  }
+              })
+              .catch(error => {
+                  console.error("Error:", error);
+              });
+      }
+  </script>
+    <script src="script.js"></script>
 </body>
 </html>

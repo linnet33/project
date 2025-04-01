@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Tracking</title>
+    <link rel="stylesheet" href="ordertrack.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Order Tracking</h1>
+        <form id="trackingForm">
+            <label for="orderId">Enter your Order ID:</label>
+            <input type="text" id="orderId" required>
+            <button type="submit">Track Order</button>
+        </form>
+        <div id="orderStatus" class="order-status"></div>
+        <button id="cancelOrderButton" style="display: none;">Cancel Order</button>
+        <div id="cancellationStatus" class="order-status"></div>
+    </div>
+    <script src="ordertrack.js"></script>
+</body>
+</html>
