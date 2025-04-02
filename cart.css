@@ -1,4 +1,4 @@
-/* General Page Styles */
+
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
@@ -20,7 +20,7 @@ body {
     text-align: center;
 }
 
-/* Cart Items */
+
 .cart-items {
     margin: 20px 0;
 }
@@ -40,7 +40,7 @@ body {
     font-size: 16px;
 }
 
-/* Cart Summary */
+
 .cart-summary {
     margin-top: 20px;
     font-size: 18px;
@@ -50,7 +50,7 @@ body {
     margin: 5px 0;
 }
 
-/* Buttons */
+
 button {
     background: #007bff;
     color: white;
@@ -67,7 +67,7 @@ button:hover {
     background: #0056b3;
 }
 
-/* Remove and Increase Quantity Buttons */
+
 .cart-item button {
     background: #ff3b3b;
     padding: 5px 10px;
@@ -78,7 +78,7 @@ button:hover {
     background: #d32f2f;
 }
 
-/* Special Button Styles */
+
 .cart-item button:first-of-type {
     background: #28a745;
 }
@@ -87,7 +87,7 @@ button:hover {
     background: #218838;
 }
 
-/* Responsive Design */
+
 @media (max-width: 600px) {
     .cart-item {
         flex-direction: column;

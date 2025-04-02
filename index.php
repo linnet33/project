@@ -75,11 +75,11 @@ require 'databaseconn.php';
     </div>
     <script>
       function joinAsGuest() {
-          // Set a session variable for guest users
-          fetch('guest_session.php') // This PHP file sets the session variable
+          
+          fetch('guest_session.php') 
               .then(response => {
                   if (response.ok) {
-                      window.location.href = 'home.php'; // Redirect to home page
+                      window.location.href = 'home.php';
                   } else {
                       alert("Failed to set guest session.");
                   }

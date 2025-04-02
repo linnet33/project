@@ -1,6 +1,6 @@
-<<?php
+<?php
 session_start();
-require 'databaseconn.php'; 
+require 'databaseconn.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -15,17 +15,13 @@ require 'databaseconn.php';
     <div class="container">
         <h1>Your Cart</h1>
         <div class="cart-items"></div>
-        
-        <!-- Cart Summary -->
         <div class="cart-summary">
             <h2>Total Items: <span id="total-items">0</span></h2>
             <h2>Total Price: <span id="total-price">0</span> KShs</h2>
         </div>
-
         <button onclick="clearCart()">Clear Cart</button>
         <button onclick="proceedToCheckout()">Proceed to Checkout</button>
     </div>
-
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             loadCart();
@@ -41,7 +37,7 @@ require 'databaseconn.php';
             const totalPriceElement = document.getElementById("total-price");
 
             let cart = getCart();
-            cartItemsContainer.innerHTML = ""; // Clear previous items
+            cartItemsContainer.innerHTML = "";
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
@@ -103,25 +99,23 @@ require 'databaseconn.php';
         }
 
         function proceedToCheckout() {
-    // Check if user is logged in
-    const userId = <?php echo json_encode($_SESSION['user_id'] ?? null); ?>; // Get user ID from PHP session
-    const isGuest = <?php echo json_encode($_SESSION['guest'] ?? false); ?>; // Check if user is a guest
+            const userId = <?php echo json_encode($_SESSION['user_id'] ?? null); ?>;
+            const isGuest = <?php echo json_encode($_SESSION['guest'] ?? false); ?>;
 
-    if (!userId || isGuest) {
-        alert("You need to sign in to proceed to checkout.");
-        window.location.href = "index.php"; // Redirect to sign-in page
-        return;
-    }
+            if (!userId || isGuest) {
+                alert("You need to sign in to proceed to checkout.");
+                window.location.href = "index.php";
+                return;
+            }
 
-    const cart = getCart();
-    localStorage.setItem("checkoutCart", JSON.stringify(cart)); // Store cart for checkout
+            const cart = getCart();
+            localStorage.setItem("checkoutCart", JSON.stringify(cart));
 
-    // Calculate total price and store it for checkout
-    const totalPrice = cart.reduce((total, item) => total + (parseFloat(item.price.replace(/[^\d.]/g, "")) * item.quantity), 0);
-    localStorage.setItem("checkoutTotal", totalPrice.toFixed(2)); // Store total price for checkout
+            const totalPrice = cart.reduce((total, item) => total + (parseFloat(item.price.replace(/[^\d.]/g, "")) * item.quantity), 0);
+            localStorage.setItem("checkoutTotal", totalPrice.toFixed(2));
 
-    window.location.href = "checkout.html"; // Redirect to checkout page
-}
-
+            window.location.href = "checkout.html";
+        }
+    </script>
 </body>
 </html>

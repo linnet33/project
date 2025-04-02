@@ -52,5 +52,5 @@ button:hover {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    display: none; /* Hidden by default */
+    display: none; 
 }

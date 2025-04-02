@@ -2,14 +2,11 @@
 session_start();
 require 'databaseconn.php'; 
 
-// Initialize variables
 $firstName = null;
 
-// Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
     $userId = $_SESSION['user_id'];
 
-    // Fetch user details
     if ($stmt = $conn->prepare("SELECT first_name FROM login WHERE CustomerId = ?")) {
         $stmt->bind_param("i", $userId);
         $stmt->execute();
@@ -29,7 +26,6 @@ if (isset($_SESSION['user_id'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <!-- navbar Section -->
     <section id="header">
         <img src="images/logo.jpeg" class="logo">
         <div>
@@ -44,68 +40,60 @@ if (isset($_SESSION['user_id'])) {
             </ul>
         </div>
     </section>
-    <!-- Content for the home page-->
     <div id="homecont">
         <div class="cont">
             <h4>Welcome to La Pet!</h4>
             <?php if ($firstName): ?>
-                        <span>Welcome, <?php echo htmlspecialchars($firstName); ?>!</span>
-                    <?php else: ?>
-                        <span>Welcome, Guest!</span>
-                    <?php endif; ?>
+                <span>Welcome, <?php echo htmlspecialchars($firstName); ?>!</span>
+            <?php else: ?>
+                <span>Welcome, Guest!</span>
+            <?php endif; ?>
             <h2>Great deals</h2>
             <h1>On all products</h1>
             <p>We have everything you need to keep your furry friend happy and healthy</p>
             <a href="#shophere"><button>Shop Now</button></a>
+        </div>
     </div>
-    </div>
-     <!-- Content for the features -->
     <div id="feature">
         <div class="fe-box">
-         <img src="images/features/del.jpg" alt="">
-         <h6>Fast Deliveries</h6>
+            <img src="images/features/del.jpg" alt="">
+            <h6>Fast Deliveries</h6>
         </div>
         <div class="fe-box">
             <img src="images/features/ord.jpg" alt="">
             <h6>Online Orders</h6>
-           </div>
-           <div class="fe-box">
+        </div>
+        <div class="fe-box">
             <img src="images/features/sav.jpg" alt="">
             <h6>Save Cash</h6>
-           </div>
-           <div class="fe-box">
+        </div>
+        <div class="fe-box">
             <img src="images/features/pro,.jpg" alt="">
             <h6>Promotions</h6>
-           </div>
-           <div class="fe-box">
+        </div>
+        <div class="fe-box">
             <img src="images/features/sales.jpg" alt="">
             <h6>Happy Sells</h6>
-           </div>
-           <div class="fe-box">
+        </div>
+        <div class="fe-box">
             <img src="images/features/ser.jpg" alt="">
             <h6>Customer Service</h6>
-           </div>
+        </div>
     </div>
-    <!-- About Section -->
     <section id="about-section">
         <h3>About Us</h3>
         <div id="about">
             <img src="images/hpme bg.webp" alt="Picture of a dog">
             <div class="aboutcont">
                 <p>La Pet is dedicated to providing everything a pet needs to live a happy, healthy life.</p>
-                <p>We offer a wide range of high-quality pet products, from nutritious food 
-                    and fun toys to cozy bedding and essential accessories.</p>
-                <p>La Pet also helps pet owners connect with trusted veterinarians 
-                    and professional groomers. Simply fill out a service request form 
-                    and La Pet will get in touch with you.</p>
+                <p>We offer a wide range of high-quality pet products, from nutritious food and fun toys to cozy bedding and essential accessories.</p>
+                <p>La Pet also helps pet owners connect with trusted veterinarians and professional groomers. Simply fill out a service request form and La Pet will get in touch with you.</p>
                 <button>Service Request</button>
             </div>
         </div>
     </section>
-    <!-- Shop Section  which is  a grid -->
     <section id="shophere">
         <h3>Shop By Category</h3>
-        <!-- Various categotries of the shop section with images -->
         <div id="shopcont">
             <div class="shop-box">
                 <a href="dog.html">
@@ -199,41 +187,29 @@ if (isset($_SESSION['user_id'])) {
             </div>
         </div>
     </section>
-    <!-- Contact Section -->
     <section id="contactus">
         <h3>Contact Us</h3>
         <div class="contact-us">
             <form action="submit_form.php" method="POST">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" placeholder="Enter your name" required>
-    
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" required>
-    
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" rows="4" placeholder="Write your message here" required></textarea>
-    
                 <button type="submit">Send Message</button>
             </form>
         </div>
     </section>
-    
-    <!-- Footer Section -->
     <footer id="closing">
         <div class="close-data">
-    
-            <!-- Logo -->
             <div class="close-img">
                 <img src="images/logo.jpeg" alt="La Pet Accessories Logo">
             </div>
-    
-            <!-- Map Section -->
             <div class="close-map">
                 <h2>Our Shop Location</h2>
                 <a href="map.html">Google Location</a>
             </div>
-    
-            <!-- Contact Details -->
             <div class="close-social">
                 <h2>Get in Touch with Us</h2>
                 <p>
@@ -244,18 +220,13 @@ if (isset($_SESSION['user_id'])) {
                     Email: <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox">
                         linnetgithinji42@gmail.com</a>
                 </p>
-                
-                <!-- Social Media Links -->
                 <p>
                     <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
                     <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
                     <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
                 </p>
             </div>
-    
         </div>
-    
-        <!-- Copyright -->
         <div class="rights">
             <p>Copyright &copy; 2025 - La Pet Accessories. All Rights Reserved.</p>
         </div>

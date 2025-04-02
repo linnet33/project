@@ -1,21 +1,20 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: sans-serif;
     font-size: 18px;
 }
-body{
+body {
     margin: 4vh;
 }
-.container{
+.container {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.sidebar{
+.sidebar {
     width: 25%;
-    border: apx solid #eee;
     border-radius: 3px;
     padding: 15px;
     height: 92vh;
@@ -24,16 +23,16 @@ body{
     flex-direction: column;
     justify-content: space-between;
 }
-.data{
+.data {
     width: 73%;
     border-radius: 3px;
     height: 92vh;
     overflow-y: auto;
 }
-.fa-circle{
+.fa-circle {
     color: orangered;
 }
-.searchbar{
+.searchbar {
     width: 100%;
     background-color: #eee;
     border-radius: 3px;
@@ -42,30 +41,30 @@ body{
     align-items: center;
     justify-content: space-around;
 }
-input{
+input {
     border: none;
     outline: none;
     background: none;
 }
-.glass:hover{
+.glass:hover {
     color: orangered;
     cursor: pointer;
 }
-.social-icons{
-display: flex;
-align-items: center;
-justify-content: center;
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
-.fa-brands{
+.fa-brands {
     font-size: 25px;
     margin: 0 10px;
     color: #333;
     cursor: pointer;
 }
-.fa-brands:hover{
+.fa-brands:hover {
     color: orangered;
 }
-.top{
+.top {
     height: 60px;
     border-radius: 3px;
     background-color: #eee;
@@ -95,50 +94,49 @@ justify-content: center;
     font-size: 30px;
     cursor: pointer;
 }
-
-.dog-grid{
+.dog-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     column-gap: 25px;
     row-gap: 20px;
 }
-.item-box{
+.item-box {
     text-align: center;
-    flex: 1; /* Makes all boxes take equal width */
-    min-width: 150px; /* Prevents shrinking too much */
-    padding: 10px;  /*space inside the box*/
-    background: #fff; /* Optional: makes shadow visible */
-    border-radius: 5px; /* Slightly rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Soft shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    flex: 1;
+    min-width: 150px;
+    padding: 10px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.item-box:hover{
-    transform: translateY(-5px); /* Lifts the box on hover */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow on hover */
+.item-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
-.item-box img{
+.item-box img {
     height: 150px;
     width: 150px;
     border-radius: 50%;
-  }
+}
 .item-box p {
-      margin-top: 8px;
-      font-weight: 500;
-      font-size: 14px;
-      color: #555;
-      margin-bottom: 5px;
-  }
-  .item-box h6{
+    margin-top: 8px;
+    font-weight: 500;
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 5px;
+}
+.item-box h6 {
     color: red;
     margin-bottom: 5px;
-  }
-.item-box button{
+}
+.item-box button {
     background-color: #ff6600;
     color: #ffff;
     padding: 10px;
     border-radius: 10px;
     border: none;
 }
-.item-box i{
+.item-box i {
     padding-right: 5px;
 }

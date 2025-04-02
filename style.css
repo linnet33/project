@@ -116,9 +116,6 @@ input:not(:placeholder-shown) ~ label {
     text-align: center;
 }
 
-/* Removed icons section since we no longer have Google and Facebook options */
-
-/* Links section */
 .links {
     display: flex;
     justify-content: space-around;
@@ -140,7 +137,6 @@ button:hover {
     color: blue;
 }
 
-/* Guest Option Styles */
 .guest-option {
     text-align: center;
     margin-top: 20px;
@@ -154,8 +150,8 @@ button:hover {
 
 .guest-option button {
     padding: 10px 20px;
-    background-color: rgb(125, 125, 235); /* Button background */
-    color: white; /* Button text color */
+    background-color: rgb(125, 125, 235);
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -164,5 +160,5 @@ button:hover {
 }
 
 .guest-option button:hover {
-    background-color: #07001f; /* Darker background on hover */
+    background-color: #07001f;
 }

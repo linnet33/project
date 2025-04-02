@@ -1,18 +1,17 @@
 document.getElementById('trackingForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent form submission
+    event.preventDefault();
 
     const orderId = document.getElementById('orderId').value;
     const orderStatusDiv = document.getElementById('orderStatus');
     const cancelOrderButton = document.getElementById('cancelOrderButton');
     const cancellationStatusDiv = document.getElementById('cancellationStatus');
 
-    // Make an AJAX request to the PHP script
     fetch(`track_order.php?tracking_id=${orderId}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
                 orderStatusDiv.innerHTML = data.error;
-                cancelOrderButton.style.display = 'none'; // Hide cancel button if order not found
+                cancelOrderButton.style.display = 'none';
             } else {
                 orderStatusDiv.innerHTML = `
                     <strong>Order ID:</strong> ${data.id}<br>
@@ -22,7 +21,7 @@ document.getElementById('trackingForm').addEventListener('submit', function(even
                     <strong>Order Date:</strong> ${data.order_date}<br>
                     <strong>Delivery Date:</strong> ${data.delivery_date}
                 `;
-                cancelOrderButton.style.display = 'block'; // Show cancel button
+                cancelOrderButton.style.display = 'block';
             }
             orderStatusDiv.style.display = 'block';
         })
@@ -31,14 +30,13 @@ document.getElementById('trackingForm').addEventListener('submit', function(even
             orderStatusDiv.style.display = 'block';
         });
 
-    // Cancel order functionality
     cancelOrderButton.onclick = function() {
         fetch(`cancel_order.php`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ tracking_id: orderId }) // Use tracking_id instead of orderId
+            body: JSON.stringify({ tracking_id: orderId })
         })
         .then(response => response.json())
         .then(data => {

@@ -78,7 +78,6 @@
                 payment: form.payment.value
             };
 
-            // Send the order data to the server
             fetch('process_order.php', {
                 method: 'POST',
                 headers: {
@@ -89,12 +88,10 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Display the Order ID in the modal
                     orderIdElement.textContent = data.order_id;
 
-                    // Load cart details (assuming you have a cart in local storage)
                     const cart = JSON.parse(localStorage.getItem("checkoutCart")) || [];
-                    orderDetailsContainer.innerHTML = ""; // Clear previous details
+                    orderDetailsContainer.innerHTML = "";
 
                     if (cart.length === 0) {
                         orderDetailsContainer.innerHTML = "<p>No items in the cart.</p>";
@@ -106,7 +103,6 @@
                         });
                     }
 
-                    // Show the confirmation modal
                     modal.style.display = 'block';
                 } else {
                     alert('Error placing order: ' + data.error);
@@ -118,15 +114,14 @@
             });
         });
 
-        // Close modal and redirect to order tracking page
         closeModalButton.addEventListener('click', () => {
             modal.style.display = 'none';
-            window.location.href = 'ordertrack.html'; // Redirect to order tracking page
+            window.location.href = 'ordertrack.html';
         });
 
         closeModalSpan.addEventListener('click', () => {
             modal.style.display = 'none';
-            window.location.href = 'ordertrack.html'; // Redirect to order tracking page
+            window.location.href = 'ordertrack.html';
         });
     </script>
 </body>

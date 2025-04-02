@@ -1,12 +1,9 @@
-// Load cart from localStorage
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-// Function to update the cart count in the navbar
 const updateCartCount = () => {
     document.getElementById("cart-count").innerText = cart.length;
 };
 
-// Function to add an item to the cart
 const addToCart = (id) => {
     const products = [
         { id: 0, image: "images/dog food/dog7.png", title: "Reflex Hunting & Active Adult Dog Food-Beef & Rice 15Kg", price: 8820 },
@@ -18,7 +15,6 @@ const addToCart = (id) => {
     let product = products.find((item) => item.id === id);
 
     if (product) {
-        // Check if item is already in the cart
         let existingItem = cart.find((item) => item.id === id);
         if (existingItem) {
             existingItem.quantity += 1;
@@ -26,21 +22,18 @@ const addToCart = (id) => {
             cart.push({ ...product, quantity: 1 });
         }
 
-        // Save updated cart to localStorage
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartCount();
         alert(`${product.title} added to cart!`);
     }
 };
 
-// Function to remove an item from the cart
 const removeFromCart = (index) => {
     cart.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartDisplay();
 };
 
-// Function to update the quantity of a product
 const updateQuantity = (index, newQuantity) => {
     if (newQuantity <= 0) {
         removeFromCart(index);
@@ -51,13 +44,11 @@ const updateQuantity = (index, newQuantity) => {
     }
 };
 
-// Function to calculate and display the total price
 const calculateTotal = () => {
     let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
     document.getElementById("total-price").innerText = `Total: ${total} KShs`;
 };
 
-// Function to display the cart items
 const updateCartDisplay = () => {
     const cartContainer = document.getElementById("cart-container");
     cartContainer.innerHTML = "";
@@ -83,14 +74,12 @@ const updateCartDisplay = () => {
     calculateTotal();
 };
 
-// Function to clear the cart
 const clearCart = () => {
     cart = [];
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartDisplay();
 };
 
-// Display cart items and update cart count on page load
 document.addEventListener("DOMContentLoaded", () => {
     updateCartDisplay();
     updateCartCount();
